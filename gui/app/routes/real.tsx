@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from "react";
 import "./css/real.css";
+import { Link } from "react-router-dom";
+import type { Route } from "./+types/home";
 
 
 export default function Real() {
@@ -28,10 +30,10 @@ export default function Real() {
                   Search Materials
                 </button>
                 <button className ="mainB" id="guideButton" onClick={() => setSection('guide')}>
-                  Simulate
+                  Guide
                 </button>
                 <button className ="setB" id="settingsButton" onClick={() => setSection('settings')}>
-                  Guide
+                  Simulate
                 </button>
               </div>
               
@@ -83,7 +85,9 @@ export default function Real() {
               {
                 section === 'settings' && (
                   <div id="settings">
-                     
+                     <Link to="/three" className="rounded-md bg-secondary-500 px-10 py-2 hover:bg-purple-300 hover:text-white">
+                        Simulate Model
+                     </Link>
                   </div>
                 )
               }
