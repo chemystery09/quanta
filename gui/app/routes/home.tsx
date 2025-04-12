@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "reads good" },
+    { title: "CT goods" },
     { name: "description", content: "Welcome to React Router!" },
   ];
 }
@@ -19,24 +19,24 @@ export default function Home() {
   
   return <div className = "everything">
      <nav className = "nav"> 
-        <div className ="title"> Reads Good !! </div>
-        <div className ="subtitle"> Find your future favs &lt;3 </div>
+        <div className ="title"> CT Goods !! </div>
+        <div className ="subtitle"> Check out CT's &lt;3 </div>
     </nav>
 
     <main className = "mainbody">
         <div className="sidebar">
             <div className="topButtons">
               <button className ="mainB" id="dasboardButton" onClick={() => setSection('dashboard')}>
-                Book Recs
+                Search Patients
               </button>
               <button className ="mainB" id="systemsButton" onClick={() => setSection('systems')}>
-                Browse Books
+                Search Patients
               </button>
               <button className ="mainB" id="guideButton" onClick={() => setSection('guide')}>
-                Simulate
+                Render
               </button>
               <button className ="setB" id="settingsButton" onClick={() => setSection('settings')}>
-                Settings
+                Upload CT Scans
               </button>
             </div>
             
