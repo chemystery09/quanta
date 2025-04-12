@@ -2,32 +2,64 @@ import pennylane as qml
 from pennylane import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
+import os
+from dotenv import load_dotenv
+from pymatgen.ext.matproj import MPRester
+n = 32
+load_dotenv()
+api_key = os.getenv("MPRESTER_API_KEY")
 
-# Step 1: Generate a 3x3 mesh grid and its stiffness matrix
-def generate_grid_stiffness(n=10):
+def get_material(id="mp-66"):
+    with MPRester(api_key) as m:
+        results = m.summary.search(material_ids=[id], fields=["material_id", "bulk_modulus", "shear_modulus"])
+        for item in results:
+            print(f"Material ID: {item.material_id}")
+            print(f"Bulk Modulus (GPa): {item.bulk_modulus}")
+            print(f"Shear Modulus (GPa): {item.shear_modulus}")
+    return (item.bulk_modulus['vrh'], item.shear_modulus['vrh'])
+
+# Step 1: Generate a mesh grid and its stiffness matrix
+import numpy as np
+
+def generate_grid_stiffness(n, bulk_modulus, shear_modulus, h=0.34e-9, delta=1.0):
+    """
+    Generate a stiffness matrix for a 2D grid using real material properties.
+    Inputs:
+    - n: grid size (n x n)
+    - bulk_modulus: K (Pa)
+    - shear_modulus: G (Pa)
+    - h: thickness of the material (m)
+    - delta: grid spacing (m)
+    """
     size = n * n
     A = np.zeros((size, size))
     f = np.zeros((size,))
 
-    for i in range(size):
-        A[i][i] = 4  # stiffness of each node
-        if i - 1 >= 0 and (i % n != 0):  # left neighbor
-            A[i][i - 1] = -1
-        if i + 1 < size and ((i + 1) % n != 0):  # right neighbor
-            A[i][i + 1] = -1
-        if i - n >= 0:  # top neighbor
-            A[i][i - n] = -1
-        if i + n < size:  # bottom neighbor
-            A[i][i + n] = -1
+    # Compute effective Young's modulus
+    E = (9 * bulk_modulus * shear_modulus) / (3 * bulk_modulus + shear_modulus)
 
-    # Step 2: Apply external force at the center node
+    # Scale stiffness value per node interaction
+    stiffness = E / h * (1 / delta**2)
+
+    for i in range(size):
+        A[i][i] = 4 * stiffness  # main diagonal (4 neighbors)
+        if i - 1 >= 0 and (i % n != 0):  # left neighbor
+            A[i][i - 1] = -stiffness
+        if i + 1 < size and ((i + 1) % n != 0):  # right neighbor
+            A[i][i + 1] = -stiffness
+        if i - n >= 0:  # top neighbor
+            A[i][i - n] = -stiffness
+        if i + n < size:  # bottom neighbor
+            A[i][i + n] = -stiffness
+
+    # Apply external force at the center
     center = size // 2
-    f[center] = -10.0  # pushing down
+    f[center] = -10.0  # Newtons, for example
 
     return A, f
 
-K, f = generate_grid_stiffness()
-
+bulk_modulus, shear_modulus = get_material()
+K, f = generate_grid_stiffness(n, bulk_modulus, shear_modulus)
 # Step 3: Solve using classical method (for comparison)
 u_classical = np.linalg.solve(K, f)
 print("Classical Displacement:\n", u_classical)
@@ -55,7 +87,7 @@ sol_quantum = vqls_solver.solution
 print("Quantum Solution (approx):", sol_quantum)
 '''
 
-def plot_displacement(u, n=10):
+def plot_displacement(u, n):
     X, Y = np.meshgrid(range(n), range(n))
     U = u.reshape((n, n))
     fig = plt.figure()
@@ -64,4 +96,4 @@ def plot_displacement(u, n=10):
     ax.set_title("Displacement Profile")
     plt.show()
 
-plot_displacement(u_classical)
+plot_displacement(u_classical, n)
