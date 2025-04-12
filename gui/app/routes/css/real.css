@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* @theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+} */
+
+
+
+.everything, button, input {
+  font-family: Poppins, sans-serif;
+}
+
+.everything {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.nav {
+  background-color: #606D5D;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  /* align-items: center;
+  justify-content: space-between; */
+  height: 10%;
+  font-size: 20px;
+  gap : 10px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 10px;
+}
+
+/* Main content layout */
+.mainbody {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  background-color: #88958D;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.topButtons, .bottomButtons {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.mainB {
+  background-color: #BC9CB0;
+  color: white;
+  width: 100%;
+}
+
+.setB {
+  background-color: #BC9CB0;
+  color: white;
+  width: 100%;
+}
+
+.logB {
+  background-color: #9C6D8A;
+  color: white;
+}
+
+.sidebar button:hover {
+  opacity: 0.8;
+}
+
+/* Main content area */
+.sidedisplay {
+  background-color: #DDF2EB;
+  padding: 20px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.main-flex {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.searchContentBar {
+  padding: 8px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.refresh {
+  background-color: #BC9CB0; /* Green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: flex-end;
+}  
+
+.refresh:hover {
+  opacity: 0.9;
+}
+
+
