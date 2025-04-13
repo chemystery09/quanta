@@ -1,17 +1,20 @@
 from flask import Flask, request
 from fea_classical import load_mesh, get_material, generate_mesh_stiffness, build_square_sheet, get_new_nodes
 import numpy as np
+import uuid
 import os
 
 app = Flask(__name__)
+
+os.makedirs('uploads', exist_ok=True)
 
 @app.route('/api/v1/upload', methods=['POST'])
 def upload():
     obj_file = request.files['file']
 
-    uuid = str(uuid.uuid4())
+    obj_id = str(uuid.uuid4())
 
-    obj_file_path = f"uploads/{uuid}.obj"
+    obj_file_path = f"uploads/{obj_id}.obj"
     obj_file.save(obj_file_path)
 
     return {
@@ -41,6 +44,8 @@ def simulate():
 
         # Load the mesh from the temporary file
         elements, nodes = load_mesh(obj_file_path)
+        elements = np.array(elements)
+        nodes = np.array(nodes)
 
     material_id = request.json.get('material_id')
     if not material_id:
