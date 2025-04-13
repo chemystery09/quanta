@@ -45,7 +45,7 @@ def upload():
         'file_path': obj_file_path
     }
 
-@app.route('api/v1/simulate_quantum', methods=['POST'])
+@app.route('/api/v1/simulate_quantum', methods=['POST'])
 def simulate_quantum():
     obj_file_path = request.json.get('file_path')
     if not obj_file_path:
