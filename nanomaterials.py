@@ -4,12 +4,12 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import os
 from dotenv import load_dotenv
-from pymatgen.ext.matproj import MPRester
+from mp_api.client import MPRester
 n = 32
 load_dotenv()
 api_key = os.getenv("MPRESTER_API_KEY")
 
-def get_material(id="mp-66"):
+def get_material(id="mp-64"):
     with MPRester(api_key) as m:
         results = m.summary.search(material_ids=[id], fields=["material_id", "bulk_modulus", "shear_modulus"])
         for item in results:
@@ -40,6 +40,7 @@ def generate_grid_stiffness(n, bulk_modulus, shear_modulus, h=0.34e-9, delta=1.0
 
     # Scale stiffness value per node interaction
     stiffness = E / h * (1 / delta**2)
+    print('stifness', stiffness)
 
     for i in range(size):
         A[i][i] = 4 * stiffness  # main diagonal (4 neighbors)
@@ -54,46 +55,52 @@ def generate_grid_stiffness(n, bulk_modulus, shear_modulus, h=0.34e-9, delta=1.0
 
     # Apply external force at the center
     center = size // 2
-    f[center] = -10.0  # Newtons, for example
+    f[center + n // 2] = -10.0  # Newtons, for example
 
     return A, f
 
-bulk_modulus, shear_modulus = get_material()
-K, f = generate_grid_stiffness(n, bulk_modulus, shear_modulus)
-# Step 3: Solve using classical method (for comparison)
-u_classical = np.linalg.solve(K, f)
-print("Classical Displacement:\n", u_classical)
-'''
-from pennylane.qchem import VQLS
+# bulk_modulus, shear_modulus = get_material()
+# K, f = generate_grid_stiffness(n, bulk_modulus, shear_modulus)
+# # Step 3: Solve using classical method (for comparison)
+# u_classical = np.linalg.solve(K, f)
+# print(u_classical.shape)
+# print("Classical Displacement:\n", u_classical)
+# '''
+# from pennylane.qchem import VQLS
 
-# Use only small 2x2 or 4x4 to stay within qubit limits
-A_small = K[:4, :4]
-b_small = f[:4]
+# # Use only small 2x2 or 4x4 to stay within qubit limits
+# A_small = K[:4, :4]
+# b_small = f[:4]
 
-# Setup VQLS
-dev = qml.device("default.qubit", wires=2)
+# # Setup VQLS
+# dev = qml.device("default.qubit", wires=2)
 
-vqls_solver = VQLS(
-    A=A_small,
-    b=b_small,
-    ansatz=qml.templates.BasicEntanglerLayers,
-    wires=range(2),
-    device=dev,
-    num_layers=2
-)
+# vqls_solver = VQLS(
+#     A=A_small,
+#     b=b_small,
+#     ansatz=qml.templates.BasicEntanglerLayers,
+#     wires=range(2),
+#     device=dev,
+#     num_layers=2
+# )
 
-opt_result = vqls_solver.run(steps=100, lr=0.4)
-sol_quantum = vqls_solver.solution
-print("Quantum Solution (approx):", sol_quantum)
-'''
+# opt_result = vqls_solver.run(steps=100, lr=0.4)
+# sol_quantum = vqls_solver.solution
+# print("Quantum Solution (approx):", sol_quantum)
+# '''
 
-def plot_displacement(u, n):
+def plot_displacement(u, f, n):
     X, Y = np.meshgrid(range(n), range(n))
     U = u.reshape((n, n))
-    fig = plt.figure()
-    ax = fig.add_subplot(projection='3d')
-    ax.plot_surface(X, Y, U, cmap='viridis')
-    ax.set_title("Displacement Profile")
+    
+    # make two subplots
+    fig, axs = plt.subplots(1, 2, figsize=(12, 6), subplot_kw={'projection': '3d'})
+    axs[0].plot_surface(X, Y, U, cmap='viridis')
+    axs[0].set_title("Displacement Profile")
+    # plot points for force
+    axs[1].scatter(X, Y, f.reshape((n, n)))
     plt.show()
 
-plot_displacement(u_classical, n)
+# plot_displacement(u_classical, f, n)
+# print(u_classical)
+# plot_displacement(K, n)
