@@ -9,7 +9,7 @@ n = 32
 load_dotenv()
 api_key = os.getenv("MPRESTER_API_KEY")
 
-def get_material(id="mp-64"):
+def get_material(id="mp-66"):
     with MPRester(api_key) as m:
         results = m.summary.search(material_ids=[id], fields=["material_id", "bulk_modulus", "shear_modulus"])
         for item in results:

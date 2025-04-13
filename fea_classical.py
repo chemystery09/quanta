@@ -89,7 +89,7 @@ def generate_mesh_stiffness(elements, nodes, fixed_nodes, forces, bulk_modulus, 
         f[i] = 0
 
     # Apply external force
-    for node, force in forces.items():
+    for node, force in forces:
         if node < len(f):
             f[node] = force
 
@@ -152,12 +152,13 @@ def load_mesh(filename):
     return elements, nodes
 
 if __name__ == "__main__":
-    import sys
-    elements, nodes = load_mesh(sys.argv[1])
+    # import sys
+    # elements, nodes = load_mesh(sys.argv[1])
+    elements, nodes = build_square_sheet(32)
 
-    bulk_modulus, shear_modulus = get_material()
+    bulk_modulus, shear_modulus = get_material("mp-66")
 
-    K, f = generate_mesh_stiffness(elements, nodes, bulk_modulus, shear_modulus)
+    K, f = generate_mesh_stiffness(elements, nodes, [32 ** 2 - 1], [(0, -10e12)], bulk_modulus, shear_modulus)
 
     u_classical = np.linalg.solve(K, f)
 
