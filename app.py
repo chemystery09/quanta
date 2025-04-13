@@ -1,5 +1,5 @@
 from flask import Flask, request
-from fea_classical import load_mesh, get_material, generate_mesh_stiffness, build_square_sheet
+from fea_classical import load_mesh, get_material, generate_mesh_stiffness, build_square_sheet, get_new_nodes
 import numpy as np
 import os
 
@@ -63,6 +63,7 @@ def simulate():
     return {
         'original_nodes': nodes.tolist(),
         'elements': elements.tolist(),
+        'nodes': get_new_nodes(u_classical, nodes).tolist(),
         'forces': f.tolist(),
         'displacement': u_classical.tolist(),
         'bulk_modulus': bulk_modulus,

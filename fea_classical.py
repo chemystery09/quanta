@@ -112,9 +112,7 @@ def plot_displacement(u, elements, nodes):
     axs[0].set_title('Displacement Visualization')
 
     # Set limits
-    deformed_nodes = nodes.copy()
-    for i in range(len(u)):
-        deformed_nodes[i][2] += u[i]
+    deformed_nodes = get_new_nodes(u, nodes)
     triangles = [deformed_nodes[element] for element in elements]
     # print(triangles)
     collection = Poly3DCollection(triangles, linewidths=1, edgecolors='r', alpha=.25)
@@ -150,6 +148,16 @@ def load_mesh(filename):
     nodes = new_nodes
 
     return elements, nodes
+
+def get_new_nodes(u, nodes):
+    """
+    Get new nodes based on displacement.
+    """
+
+    new_nodes = np.array(nodes, dtype=float)
+    for i in range(len(u)):
+        new_nodes[i][2] += u[i]
+    return new_nodes
 
 if __name__ == "__main__":
     # import sys
