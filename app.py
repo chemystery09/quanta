@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/v1/api/upload', methods=['POST'])
+@app.route('/api/v1/upload', methods=['POST'])
 def upload():
     obj_file = request.files['file']
 
@@ -19,7 +19,7 @@ def upload():
         'file_path': obj_file_path
     }
 
-@app.route('/v1/api/simulate', methods=['POST'])
+@app.route('/api/v1/simulate', methods=['POST'])
 def simulate():
     obj_file_path = request.json.get('file_path')
 
