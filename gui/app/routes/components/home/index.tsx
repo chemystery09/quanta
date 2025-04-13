@@ -63,11 +63,16 @@ function Home({setSelectedPage}: Props) {
                 <ActionButtonProject setSelectedPage={setSelectedPage}>
                     Learn More
                 </ActionButtonProject>
-                <Link className="text-sm font-bold text-primary-500 underline hover: text-secondary-500"
+                {/*<Link className="text-sm font-bold text-primary-500 underline hover: text-secondary-500"
                 onClick = {() => setSelectedPage(SelectedPage.Project)}
                 to={`#${SelectedPage.Project}`}
                 > <p>We don't need this</p>
-                </Link>
+                </Link>*/}
+                <p>
+                    <a href="https://www.dinocasino.games/games/lobby">
+                        We don't need this
+                    </a>
+                </p>
             </motion.div>
         </div>
         <div className="flex basis-3/5 justify-center md:z-10 md:ml-40 md:mt-16 md:justify-items-end">

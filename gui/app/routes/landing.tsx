@@ -7,7 +7,7 @@ import "./css/landing.css"
 import { SelectedPage } from "./shared/types.ts";
 import Home from "./components/home/index.tsx";
 import Quantum from "./components/quantum/index.tsx";
-
+import Project from "./components/project/index.tsx";
 
 
 export default function Landing()  {
@@ -35,14 +35,12 @@ return <div>
                 setSelectedPage = {setSelectedPage}  
             />
             <Home setSelectedPage = {setSelectedPage} />
-            <Quantum setSelectedPage = {setSelectedPage} />
-            {/*<Project setSelectedPage = {setSelectedPage} /> */}
-            {/*<Demo setSelectedPage = {setSelectedPage} /> */}
         </div>
-        <div className="flex flex-col items-center justify-center h-screen">
-            <div className="title"> QUANTA  </div>
-            <div className="subtitle"> Quantum-Assisted Nano-Structural Analysis </div>
-                  
+        <div>
+            <Quantum setSelectedPage = {setSelectedPage} />
+        </div>
+        <div className="bg-teal-100">
+            <Project setSelectedPage = {setSelectedPage}/>
         </div>
     </div>
 }
