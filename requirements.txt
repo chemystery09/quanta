@@ -1,0 +1,6 @@
+vedo
+flask
+numpy
+matplotlib
+dotenv
+mp_api
