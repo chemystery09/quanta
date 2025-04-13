@@ -70,7 +70,7 @@ function Home({setSelectedPage}: Props) {
                 </Link>*/}
                 <p>
                     <a href="https://www.dinocasino.games/games/lobby">
-                        We don't need this
+                        I don't need this
                     </a>
                 </p>
             </motion.div>

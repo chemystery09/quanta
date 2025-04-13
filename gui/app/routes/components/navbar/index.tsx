@@ -5,11 +5,7 @@ import Logo from "../assets/Logo.png"
 import HashLink from "./HashLink"
 import { SelectedPage } from "../../shared/types.ts"
 import useMediaQuery from "../../hooks/useMediaQuery.ts"
-<<<<<<< HEAD
 import ActionButtonExternal from '~/routes/shared/ActionButtonExternal.tsx'
-=======
-import ActionButton from "../../shared/ActionButtonExternal.tsx"
->>>>>>> d696060f70ce836b4c4a9d0e3e48cee9d8b09cce
 
 type Props = {
     isTopOfPage: boolean;
@@ -40,18 +36,9 @@ export default function Navbar({ isTopOfPage, selectedPage, setSelectedPage }: P
                                     selectedPage={selectedPage}
                                     setSelectedPage={setSelectedPage} />
                                 <HashLink page="Project"
-<<<<<<< HEAD
                                 selectedPage={selectedPage}
                                 setSelectedPage={setSelectedPage}/>
                             </div>  
-=======
-                                    selectedPage={selectedPage}
-                                    setSelectedPage={setSelectedPage} />
-                                <HashLink page="Demo"
-                                    selectedPage={selectedPage}
-                                    setSelectedPage={setSelectedPage} />
-                            </div>
->>>>>>> d696060f70ce836b4c4a9d0e3e48cee9d8b09cce
                             <div className={`${flexBetween} gap-8`}>
                                 <p>
                                     <a href="https://trex-runner.com/">
@@ -87,16 +74,8 @@ export default function Navbar({ isTopOfPage, selectedPage, setSelectedPage }: P
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage} />
                     <HashLink page="PROJECT"
-<<<<<<< HEAD
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}/>
-=======
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage} />
-                    <HashLink page="DEMO"
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage} />
->>>>>>> d696060f70ce836b4c4a9d0e3e48cee9d8b09cce
                 </div>
             </div>
         )}
