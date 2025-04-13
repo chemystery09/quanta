@@ -5,7 +5,7 @@ import Logo from "../assets/Logo.png"
 import HashLink from "./HashLink"
 import { SelectedPage } from "../../shared/types.ts"
 import useMediaQuery from "../../hooks/useMediaQuery.ts"
-import ActionButton from '~/routes/shared/ActionButton.tsx'
+import ActionButtonExternal from '~/routes/shared/ActionButtonExternal.tsx'
 
 type Props = {
     isTopOfPage: boolean;
@@ -38,13 +38,14 @@ export default function Navbar({ isTopOfPage, selectedPage,setSelectedPage }: Pr
                                 <HashLink page="Project"
                                 selectedPage={selectedPage}
                                 setSelectedPage={setSelectedPage}/>
-                                <HashLink page="Demo"
-                                selectedPage={selectedPage}
-                                setSelectedPage={setSelectedPage}/>
                             </div>  
                             <div className={`${flexBetween} gap-8`}>
-                                <p>Dinosaur!</p>
-                                <ActionButton setSelectedPage={setSelectedPage}>Try It!</ActionButton>
+                                <p>
+                                    <a href="https://trex-runner.com/">
+                                    Dinosaur!
+                                    </a>
+                                </p>
+                                <ActionButtonExternal setSelectedPage={setSelectedPage}>Try It!</ActionButtonExternal>
                             </div>
                         </div>
                     ) : (
@@ -73,9 +74,6 @@ export default function Navbar({ isTopOfPage, selectedPage,setSelectedPage }: Pr
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}/>
                     <HashLink page="PROJECT"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}/>
-                    <HashLink page="DEMO"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}/>
                 </div>

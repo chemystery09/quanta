@@ -10,7 +10,7 @@ type Props = {
 
 const ActionButton = ({children, setSelectedPage}: Props) => {
   return (
-    <Link to="/real" className="rounded-md bg-secondary-500 px-10 py-2 hover:bg-purple-300 hover:text-white">
+    <Link to="/real" className="rounded-md bg-teal-500 px-10 py-2 hover:bg-teal-300 hover:text-white">
        Try Project     
     </Link>
   )
