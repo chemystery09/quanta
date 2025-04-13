@@ -42,7 +42,7 @@ return <div>
         <div className="flex flex-col items-center justify-center h-screen">
             <div className="title"> QUANTA  </div>
             <div className="subtitle"> Quantum-Assisted Nano-Structural Analysis </div>
-            <Link to="/real" className="topButtons"> Try Project !! </Link>        
+                  
         </div>
     </div>
 }

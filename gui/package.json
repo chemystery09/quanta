@@ -12,12 +12,15 @@
     "@heroicons/react": "^2.2.0",
     "@react-router/node": "^7.5.0",
     "@react-router/serve": "^7.5.0",
+    "@react-three/fiber": "^9.1.2",
+    "@types/three": "^0.175.0",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^19.0.0",
     "react-router": "^7.5.0",
-    "react-router-dom": "^7.5.0"
+    "react-router-dom": "^7.5.0",
+    "three": "^0.175.0"
   },
   "devDependencies": {
     "@react-router/dev": "^7.5.0",
