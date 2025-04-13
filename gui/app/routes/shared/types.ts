@@ -1,6 +1,6 @@
 export enum SelectedPage{
     Home = "home",
-    Project = "project",
     Quantum = "quantum",
+    Project = "project",
     Demo = "demo",
 }

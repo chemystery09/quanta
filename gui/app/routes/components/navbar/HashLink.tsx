@@ -14,7 +14,7 @@ export default function HashLink({
 }: Props) {
     const lowerCasePage = page.toLowerCase().replace(/ /g, "") as SelectedPage;
     return (
-        <Link className={`${selectedPage === lowerCasePage} ? "text-purple-500" : ""
+        <Link className={`${selectedPage === lowerCasePage} ? "text-teal-500" : ""
             transition duration-500 hover: text-black-500
             `}
             to={`#${lowerCasePage}`} 

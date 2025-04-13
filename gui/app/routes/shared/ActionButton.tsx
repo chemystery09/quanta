@@ -9,7 +9,7 @@ type Props = {
 
 const ActionButton = ({children, setSelectedPage}: Props) => {
   return (
-    <Link className="rounded-md bg-purple-400 px-10 py-2 hover:bg-purple-300 hover:text-white"
+    <Link className="rounded-md bg-teal-400 px-10 drop-shadow-xl py-2 hover:bg-teal-300 hover:text-white"
     to={`#${SelectedPage.Demo}`}
     onClick={() => setSelectedPage(SelectedPage.Demo)}
     >
