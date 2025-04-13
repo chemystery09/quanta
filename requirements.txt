@@ -4,3 +4,4 @@ numpy
 matplotlib
 dotenv
 mp_api
+classiq

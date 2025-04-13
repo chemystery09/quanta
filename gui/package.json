@@ -15,6 +15,7 @@
     "@react-three/drei": "^10.0.6",
     "@react-three/fiber": "^9.1.2",
     "@types/three": "^0.175.0",
+    "framer-motion": "^12.6.5",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",

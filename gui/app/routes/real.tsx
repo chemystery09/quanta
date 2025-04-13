@@ -1,25 +1,9 @@
-import React from 'react';
 import { useState } from "react";
 import "./css/real.css";
-import { Link } from "react-router-dom";
-import type { Route } from "./+types/home";
-import {
-  type FileUpload,
-  parseFormData,
-} from "@mjackson/form-data-parser";
-import type { ActionFunctionArgs } from "react-router";
 import Three from './three';
 
 
 export default function Real() {
-  const uploadHandler = async (fileUpload: FileUpload) => {
-    if (fileUpload.fieldName === "avatar") {
-      // process the upload and return a File
-    }
-
-    console.log(fileUpload);
-  }
-
   const [section, setSection] = useState("settings");
 
   const refreshPage = () => {
