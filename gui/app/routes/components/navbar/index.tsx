@@ -5,7 +5,7 @@ import Logo from "../assets/Logo.png"
 import HashLink from "./HashLink"
 import { SelectedPage } from "../../shared/types.ts"
 import useMediaQuery from "../../hooks/useMediaQuery.ts"
-import ActionButton from "../../shared/ActionButtonProject"
+import ActionButton from "../../shared/ActionButtonExternal.tsx"
 
 type Props = {
     isTopOfPage: boolean;

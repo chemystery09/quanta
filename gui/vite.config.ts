@@ -7,8 +7,8 @@ export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
   server: {
     proxy: {
-      "/api": {
-        target: "http://localhost:5000",
+      "/api/v1": {
+        target: "https://13b5-65-113-61-98.ngrok-free.app",
         changeOrigin: true
       },
     }

@@ -1,5 +1,4 @@
-import pennylane as qml
-from pennylane import numpy as np
+import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 import os
