@@ -5,13 +5,10 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/api/v1/upload', methods=['POST'])
+@app.route('/v1/api/upload', methods=['POST'])
 def upload():
     obj_file = request.files['file']
 
-    # Save the uploaded file to a temporary location
-    # tempfile in uploads/ folder
-    # generate a unique filename
     uuid = str(uuid.uuid4())
 
     obj_file_path = f"uploads/{uuid}.obj"
@@ -22,7 +19,7 @@ def upload():
         'file_path': obj_file_path
     }
 
-@app.route('/api/v1/simulate', methods=['POST'])
+@app.route('/v1/api/simulate', methods=['POST'])
 def simulate():
     obj_file_path = request.json.get('file_path')
 
