@@ -13,18 +13,18 @@ import QuantumPageGIF from "../assets/QuantumPageGIF.gif"
 const quantums: Array<QuantumType> = [
     {
         icon: <HomeModernIcon className="h-6 w-6" />,
-        title: "Quantum",
-        description: "This is the description for quantum. I am not sure what to write here. I guess I can write about my socks again."
+        title: "Asymptotic Advantage",
+        description: "The HHL algorithm is used to solve the system of linear equations to determine displacement. The HHL algorithm is a quantum algorithm that solves linear systems of equations in O(log(N)k2) time, exponentially faster than classical, which can run in O(Nk) at best."
     },
     {
         icon: <UserGroupIcon className="h-6 w-6" />,
-        title: "Quantum",
-        description: "This is the description for quantum. I am not sure what to write here. I guess I can write about my socks again."
+        title: "Accuracy",
+        description: "Our quantum solution has 98%+ fidelity to classical."
     },
     {
         icon: <AcademicCapIcon className="h-6 w-6" />,
-        title: "Quantum",
-        description: "This is the description for quantum. I am not sure what to write here. I guess I can write about my socks again."
+        title: "Scalability",
+        description: "The HHL algorithm can be easily implemented with the Suzuki-Trotter decomposition to increase scalability."
     }
 ]
 
@@ -57,13 +57,8 @@ const Quantum = ({setSelectedPage}: Props) => {
                 hidden: {opacity: 0, x: -50},
                 visible: {opacity: 1, x: 0}
             }}>  
-                <HText>MORE THAN JUST GAY.</HText>
+                <HText>THE QUANTUM ADVANTAGE.</HText>
                 <p className="my-5 text-sm">
-                    This is the paragraph where we tell you why quantum is good.
-                    I am personally not too sure. Let me tell you about my socks.
-                    Most of my socks have holes. I did not make them. My dog likes 
-                    to chew on my socks. Perhaps that is why. I have a lot of socks, 
-                    but not a lot of dogs. I guess I can forgive my dog.
                 </p>
             </motion.div>
             {/* WHY QUANTUM */}
@@ -75,6 +70,7 @@ const Quantum = ({setSelectedPage}: Props) => {
                 variants={container}
                 >
                 {quantums.map((quantum: QuantumType) => (
+                    
                     <QuantumComponent 
                     key={quantum.title}
                     icon={quantum.icon}
@@ -104,7 +100,7 @@ const Quantum = ({setSelectedPage}: Props) => {
                                 }}
                             >
                                 <HText>
-                                    SOMETHING ABOUT OUR PROBLEM
+                                Quantum computation is the future. Don't let classical hold you back.
                                 </HText>
                             </motion.div>
                         </div>
@@ -122,10 +118,9 @@ const Quantum = ({setSelectedPage}: Props) => {
                         }}
                         >
                         <p className="my-5">
-                            Something about our problem. I don't really know.
+                            Use Quanta to put yourself at the forefront of computing and engineering.
                         </p>
                         <p className="mb-5">
-                            Something about how our solution solves this problem.
                         </p>
                     </motion.div>
 

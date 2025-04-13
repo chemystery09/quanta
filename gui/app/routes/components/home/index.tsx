@@ -43,11 +43,7 @@ function Home({setSelectedPage}: Props) {
                 </div>
 
                 <p className = "mt-8 text-sm">
-                    A short description about our project, which I am not 
-                    too sure what it is about. Let me tell you about peaches.
-                    I really like peaches. When I was nine, my aunt packed me 
-                    a suitcase full of peaches and immigration thought they 
-                    were grenades.
+                    Quanta utilizes finite element analysis (FEA) and quantum computing to simulate the behavior of nanomaterials under pressure, enabling groundbreaking advancements in engineering and science.
                 </p>
             </motion.div>
             <motion.div 

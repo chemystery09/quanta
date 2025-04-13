@@ -5,29 +5,29 @@ import HText from "../../shared/HText.tsx"
 import image1 from "../assets/image1.png"
 import image2 from "../assets/image2.png"
 import image3 from "../assets/image3.png"
-import image4 from "../assets/image4.png"
+import ClassicalGraph from "../assets/ClassicalGraph.gif"
 import ProjectFeature from "./ProjectFeature.tsx"
 
 const projectFeatures: Array<ProjectFeatureType> = [
     {
         name: "Step 1",
-        description: "This is the description for project. I am not sure what to write here. I guess I can write about my socks again.",
+        description: "Give Quanta details on what you want to model.",
         image: image1,
     },
     {
         name: "Step 2",
-        description: "This is the description for project. I am not sure what to write here. I guess I can write about my socks again.",
+        description: "Quanta pulls real data on the material.",
         image: image2,
     },
     {
         name: "Step 3",
-        description: "This is the description for project. I am not sure what to write here. I guess I can write about my socks again.",
-        image: image3,
+        description: "The material is represented as a mesh, and finite element analysis is run on it to simulate force.",
+        image: ClassicalGraph,
     },
     {
         name: "Step 4",
-        description: "This is the description for project. I am not sure what to write here. I guess I can write about my socks again.",
-        image: image4,
+        description: "Voila! See your model and how it warps under stress. Use this to know how much force your material can take, and how to optimize it for your needs.",
+        image: image3,
     },
 ]
 
@@ -37,7 +37,7 @@ type Props = {
 
 const Project = ({setSelectedPage}: Props) => {
   return (
-    <section id="project" className="w-full bg-teal-50 mt-40 py-20 md-0">
+    <section id="project" className="w-full bg-teal-50 mt-40 py-20">
         <motion.div
             onViewportEnter={() => setSelectedPage(SelectedPage.Project)}
         >
@@ -55,7 +55,7 @@ const Project = ({setSelectedPage}: Props) => {
                 <div className="md:w-3/5">
                     <HText>QUANTUM-ASSISTED NANO-STRUCTURAL ANALYSIS</HText>
                     <p className="py-5">
-                        This is the description for project. I am not sure what to write here. I guess I can write about my socks again.
+                        Quanta uses finite element analysis to model the behavior of nanomaterials under force as differential equations. The differential equations are minimized into a system of linear equations, and then solved using the HHL algorithm on a quantum computer. The displacement is collected and graphed, and results are then used to predict how nanomaterials will react under force, and to optimize their design for specific applications.
                     </p>
                 </div>
             </motion.div>
