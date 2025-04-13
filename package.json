@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@mjackson/form-data-parser": "^0.7.0",
+    "@types/react-router": "^5.1.20"
+  }
+}
