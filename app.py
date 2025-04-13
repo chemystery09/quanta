@@ -1,11 +1,11 @@
 from flask import Flask, request
-from fea_classical import load_mesh, get_material, generate_mesh_stiffness, build_square_sheet
+from fea_classical import load_mesh, get_material, generate_mesh_stiffness, build_square_sheet, get_new_nodes
 import numpy as np
 import os
 
 app = Flask(__name__)
 
-@app.route('/v1/api/upload', methods=['POST'])
+@app.route('/api/v1/upload', methods=['POST'])
 def upload():
     obj_file = request.files['file']
 
@@ -19,7 +19,7 @@ def upload():
         'file_path': obj_file_path
     }
 
-@app.route('/v1/api/simulate', methods=['POST'])
+@app.route('/api/v1/simulate', methods=['POST'])
 def simulate():
     obj_file_path = request.json.get('file_path')
 
@@ -63,6 +63,7 @@ def simulate():
     return {
         'original_nodes': nodes.tolist(),
         'elements': elements.tolist(),
+        'nodes': get_new_nodes(u_classical, nodes).tolist(),
         'forces': f.tolist(),
         'displacement': u_classical.tolist(),
         'bulk_modulus': bulk_modulus,
