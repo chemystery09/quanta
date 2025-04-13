@@ -8,6 +8,7 @@ import { SelectedPage } from "./shared/types.ts";
 import Home from "./components/home/index.tsx";
 import Quantum from "./components/quantum/index.tsx";
 import Project from "./components/project/index.tsx";
+import Credits from "./components/credits/index.tsx";
 
 
 export default function Landing()  {
@@ -41,6 +42,9 @@ return <div>
         </div>
         <div className="bg-teal-100">
             <Project setSelectedPage = {setSelectedPage}/>
+        </div>
+        <div className="bg-teal-100">
+            <Credits setSelectedPage = {setSelectedPage}/>
         </div>
     </div>
 }

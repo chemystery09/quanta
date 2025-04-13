@@ -6,6 +6,7 @@ import HashLink from "./HashLink"
 import { SelectedPage } from "../../shared/types.ts"
 import useMediaQuery from "../../hooks/useMediaQuery.ts"
 import ActionButtonExternal from '~/routes/shared/ActionButtonExternal.tsx'
+import { Link } from "react-router-dom"
 
 type Props = {
     isTopOfPage: boolean;
@@ -76,6 +77,9 @@ export default function Navbar({ isTopOfPage, selectedPage, setSelectedPage }: P
                     <HashLink page="PROJECT"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}/>
+                    <Link to="/real" className="simulate">
+                        TRY PROJECT
+                    </Link>
                 </div>
             </div>
         )}
