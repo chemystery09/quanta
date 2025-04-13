@@ -15,43 +15,37 @@ export default function Real() {
     };
     
     return <div className = "everything">
-       <nav className = "nav"> 
-          <div className ="title"> QUANTA !! </div>
-          <div className ="subtitle"> See how the better Fusion360 works &lt;3 </div>
+       <nav className = "nav bg-teal-100 z-50 shadow-md"> 
+          <div className ="title text-black"> QUANTA !! </div>
+          <div className ="subtitle text-black"> See how the better Fusion360 works &lt;3 </div>
       </nav>
   
       <main className = "mainbody">
-          <div className="sidebar">
+          <div className="sidebar bg-teal-50 shadow-xl">
               <div className="topButtons">
-                <button className ="mainB" id="dasboardButton" onClick={() => setSection('dashboard')}>
-                  Upload OBJ File
-                </button>
-                <button className ="mainB" id="systemsButton" onClick={() => setSection('systems')}>
-                  Search Materials
-                </button>
-                <button className ="mainB" id="guideButton" onClick={() => setSection('guide')}>
+                <button className ="mainB bg-teal-500" id="dasboardButton" onClick={() => setSection('dashboard')}>
                   Guide
                 </button>
-                <button className ="setB" id="settingsButton" onClick={() => setSection('settings')}>
-                  Simulate
+                <button className ="mainB bg-teal-500" id="systemsButton" onClick={() => setSection('systems')}>
+                  Search Materials
                 </button>
-              </div>
-              
-              <div className="bottomButtons">
-                <button className ="logB" id="logoutButton" onClick={() => closeWindow()}>
-                  Logout
+                <button className ="mainB bg-teal-500" id="guideButton" onClick={() => setSection('guide')}>
+                  Upload OBJ File
+                </button>
+                <button className ="setB bg-teal-500" id="settingsButton" onClick={() => setSection('settings')}>
+                  Simulate
                 </button>
               </div>
               
               
           </div>
   
-          <div className = "sidedisplay">
+          <div className = "sidedisplay bg-transparent">
               {
                 section === 'dashboard' && (
                   <div id="dashboard">
                     <div className="main-flex">
-                      <button className = "refresh" onClick={() => refreshPage()}>Refresh</button>
+                      <button className = "refresh bg-teal-500" onClick={() => refreshPage()}>Refresh</button>
                     </div>
   
                     <div className="update-text">
@@ -65,7 +59,7 @@ export default function Real() {
                   <div id="systems">
                     <div className = "main-flex">
                         <input className="searchContentBar" type="text" id="searchFiles"
-                            placeholder="Search Books..."/> 
+                            placeholder="Search Materials..."/> 
                         <button className = "refresh" onClick={() => refreshPage()}>Refresh</button>
                     </div>
                   </div>
