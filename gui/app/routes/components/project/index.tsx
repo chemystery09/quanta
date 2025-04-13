@@ -4,30 +4,33 @@ import { motion } from "framer-motion"
 import HText from "../../shared/HText.tsx"
 import image1 from "../assets/image1.png"
 import image2 from "../assets/image2.png"
-import image3 from "../assets/image3.png"
 import ClassicalGraph from "../assets/ClassicalGraph.gif"
+import QuantumGraph from "../assets/QuantumGraph.png"
+import image3 from "../assets/image3.png"
+import mesh from "../assets/mesh.png"
+import comparison from "../assets/comparison.webp"
 import ProjectFeature from "./ProjectFeature.tsx"
 
 const projectFeatures: Array<ProjectFeatureType> = [
     {
         name: "Step 1",
         description: "Give Quanta details on what you want to model.",
-        image: image1,
+        image: mesh,
     },
     {
         name: "Step 2",
         description: "Quanta pulls real data on the material.",
-        image: image2,
+        image: comparison,
     },
     {
         name: "Step 3",
         description: "The material is represented as a mesh, and finite element analysis is run on it to simulate force.",
-        image: ClassicalGraph,
+        image: image3,
     },
     {
         name: "Step 4",
         description: "Voila! See your model and how it warps under stress. Use this to know how much force your material can take, and how to optimize it for your needs.",
-        image: image3,
+        image: QuantumGraph,
     },
 ]
 

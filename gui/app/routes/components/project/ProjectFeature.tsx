@@ -14,7 +14,7 @@ const ProjectFeature = ({name,description,image}: Props) => {
         <p className="text-2xl">{name}</p>
         <p className="mt-5">{description}</p>
     </div>
-    <img alt={`${image}`} src={image} />
+    <img className = "object-scale-down" alt={`${image}`} src={image} />
   </li>
 }
 
