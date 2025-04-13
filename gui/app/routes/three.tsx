@@ -104,11 +104,20 @@ function InteractiveModel(props: { meshProps?: ThreeElements['mesh'], nodes: num
         }
     });
 
+    // Set the camera position if provided
+    const center = [0, 1, 2].map((i) => props.nodes.reduce((acc, val, index) => (index % 3 === i ? acc + val : acc), 0) / (props.nodes.length / 3)) as [number, number, number];
+
+    // get the min and max values of the nodes to get the size of the object
+    const mins = [0, 1, 2].map((i) => Math.min(...props.nodes.filter((_, index) => index % 3 === i)));
+    const maxes = [0, 1, 2].map((i) => Math.max(...props.nodes.filter((_, index) => index % 3 === i)));
+
+    const sizes = maxes.map((max, index) => max - mins[index]);
+
     useFrame(() => {
         // make camera spin around the object
-        camera.position.x = center[0] + Math.sin(Date.now() * 0.0001) * sizes[0] * 1.5;
-        camera.position.y = center[1] + Math.cos(Date.now() * 0.0001) * sizes[1] * 1.5;
-        camera.position.z = center[2] + sizes[2] * 2;
+        camera.position.x = center[0] + Math.sin(Date.now() * 0.0001) * Math.max(sizes[0], 5) * 1.5;
+        camera.position.y = center[1] + Math.cos(Date.now() * 0.0001) * Math.max(sizes[1], 5) * 1.5;
+        camera.position.z = center[2] + Math.max(sizes[2] * 2, 5);
         camera.lookAt(...center);
     })
 
@@ -122,15 +131,6 @@ function InteractiveModel(props: { meshProps?: ThreeElements['mesh'], nodes: num
         return [red, green, blue];
     }).flat();
     geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(simColors), 3)); // 3 values per color (r, g, b)
-
-    // Set the camera position if provided
-    const center = [0, 1, 2].map((i) => props.nodes.reduce((acc, val, index) => (index % 3 === i ? acc + val : acc), 0) / (props.nodes.length / 3)) as [number, number, number];
-
-    // get the min and max values of the nodes to get the size of the object
-    const mins = [0, 1, 2].map((i) => Math.min(...props.nodes.filter((_, index) => index % 3 === i)));
-    const maxes = [0, 1, 2].map((i) => Math.max(...props.nodes.filter((_, index) => index % 3 === i)));
-
-    const sizes = maxes.map((max, index) => max - mins[index]);
 
     camera.up = new THREE.Vector3(0, 0, 1);
     camera.position.set(center[0] - sizes[0] * 1.5, center[1] - sizes[1] * 1.5, center[2] + sizes[2] * 2); // Adjust the Z position to move the camera back
@@ -222,7 +222,7 @@ export default function Three(props: ThreeElements['mesh']) {
     return (
         <div className="w-full h-full relative">
             <Canvas shadows={true} camera={{ up: new THREE.Vector3(0, 0, 1) }}>
-                <CustomObject nodes={data.current.original_nodes.flat()} elements={elements} color="blue" />
+                <CustomObject nodes={data.current.original_nodes.flat()} elements={elements} color="grey" />
                 <InteractiveModel nodes={nodes} elements={elements} displacement={data.current.displacement} originalNodes={data.current.original_nodes.flat()} />
             </Canvas>
 
@@ -248,14 +248,14 @@ export default function Three(props: ThreeElements['mesh']) {
                         <label htmlFor="upload-button" className="uploadB bg-teal-100 rounded-md px-10 py-2">Upload{uploadedFile ? `ed ${uploadedFile.name}` : ''}</label>
                     </div>
                 ) : (
-                    <input type="number" defaultValue={n.current} onChange={(e) => n.current = parseInt(e.target.value)} className="border border-gray-300 rounded p-2" />
+                    <input type="number" defaultValue={n.current} onChange={(e) => n.current = parseInt(e.target.value)} className="border border-gray-300 rounded p-2" placeholder="Number of Nodes" />
                 )}
 
                 <br />
 
-                <input type="text" defaultValue={materialId.current} onChange={(e) => materialId.current = e.target.value} className="border border-gray-300 rounded p-2" />
-                <input type="text" defaultValue={fixedNodes.current.join(',')} onChange={(e) => fixedNodes.current = e.target.value.split(',').map((n: string) => parseInt(n))} className="border border-gray-300 rounded p-2" />
-                <input type="text" defaultValue={forces.current.map(f => f.join(':')).join(',')} onChange={(e) => forces.current = e.target.value.split(',').map((n: string) => n.split(':').map(x => parseFloat(x)))} className="border border-gray-300 rounded p-2" />
+                <input type="text" defaultValue={materialId.current} onChange={(e) => materialId.current = e.target.value} className="border border-gray-300 rounded p-2" placeholder="Material ID" />
+                <input type="text" defaultValue={fixedNodes.current.join(',')} onChange={(e) => fixedNodes.current = e.target.value.split(',').map((n: string) => parseInt(n))} className="border border-gray-300 rounded p-2" placeholder="Fixed Nodes" />
+                <input type="text" defaultValue={forces.current.map(f => f.join(':')).join(',')} onChange={(e) => forces.current = e.target.value.split(',').map((n: string) => n.split(':').map(x => parseFloat(x)))} className="border border-gray-300 rounded p-2" placeholder="Forces (NodeID:Force,...)" />
                 <br />
                 <button className={`bg-teal-500 text-white px-4 py-2 rounded ${disabledSubmit}`} onClick={() => { setLoading(true); resimulate(); }} disabled={disabledSubmit}>Resimulate</button>
             </div>
