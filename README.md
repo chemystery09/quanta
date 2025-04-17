@@ -2,7 +2,7 @@
 
 ## Check It Out!
 [quantano.tech
-](/quantano.tech)
+](https://quantano.tech/)
 ## Inspiration
 We've all worked with Fusion360 before and been frustrated at how long it can take to render certain items and the fact that its limited in scope - it can't model nanomaterials. Predicting how materials behave under stress is critical for many different industries, so we decided to make a solution. 
 
